@@ -1,0 +1,22 @@
+@import url('./fonts.scss');
+ 
+ *{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.container {
+  max-width: 1216px;
+  margin: auto;
+  padding: 0 10px;
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+html{
+  font-family: "Work Sans","Inter","Source Serif 4",serif;
+}

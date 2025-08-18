@@ -1,0 +1,42 @@
+.header{
+    padding-top: 32px;
+    &-wrap{
+        display: flex;
+        justify-content: space-between;
+    }
+    &-logo{
+        &-link{
+            display: flex;
+            align-items: center;
+        }
+        &-image{
+            margin-right: 10px;
+        }
+        &-text{
+            display: flex;
+            font-size: 20px;
+            color: #000000;
+            & span{
+                font-weight: 600;
+            }
+        }
+    }
+    &-search{
+        width: 166px;
+        border: 0px;
+        background-color: #F4F4F5;
+        line-height: 36px;
+        padding-left: 16px;
+        font-family: 'Inter',serif;
+        font-size: 14px;
+        font-weight: 400;
+        &-wrap{
+            position: relative;
+        }
+        &-svgMagnifier{
+            position: absolute;
+            right: 10px;
+            bottom: 13px;
+        }
+    }
+}
