@@ -2,11 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import { axiosInstance } from "../../axios"
 
 export type TnewsThunk = {
-     authors:[
-          {
-               name:string
-          }
-     ],
+     authors:{name:string}[],
      id:number,
      image_url:string,
      title:string,
@@ -15,8 +11,13 @@ export type TnewsThunk = {
      summary:string
 }
 
-export const getNews = createAsyncThunk<TnewsThunk[],number>('getBlogs', async(offset:number) =>{
-     const NewsDate =  await axiosInstance.get(`/?limit=9&offset=${offset}`)
+type TgetThunk = {
+     offset:number,
+     search?:string
+}
+
+export const getNews = createAsyncThunk<TnewsThunk[],TgetThunk>('getBlogs', async({offset,search}) =>{
+     const NewsDate =  await axiosInstance.get(`/?limit=9&offset=${offset}${search ? `&search=${search}`:""}`)
      return NewsDate.data.results
 })
 

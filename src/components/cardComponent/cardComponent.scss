@@ -3,13 +3,14 @@
     border: 1px solid #E8E8EA;
     border-radius: 12px;
     margin: 0 8px 20px;
-    padding: 16px 0 16px 16px;
+    padding: 16px 16px 16px 16px;
     display: flex;
     flex-direction: column;
     &-title{
         font-size: 24px;
         font-weight: 600;
         margin-bottom: 20px;
+        width: 360px;
     }
     &-img{
         border-radius: 6px;
@@ -18,6 +19,7 @@
         &-wrap{
             height: 240px;
             width: 360px;
+            margin-bottom: 16px;
         }
     }
     &-wrap-text{

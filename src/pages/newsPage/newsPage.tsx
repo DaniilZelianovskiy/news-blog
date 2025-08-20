@@ -8,7 +8,7 @@ import { getNews } from "../../redux/thunks/newsThunk"
 import { selectNewsList } from "../../redux/slices/newsSlice"
 import './newsPage.scss'
 import { ButtonComponent } from "../../components/buttonComponent/buttonComponent"
-import { Link } from "react-router"
+import { Link, useOutletContext } from "react-router"
 
 export const NewsPage = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -16,19 +16,23 @@ export const NewsPage = () => {
     const [offset,setOffset] = useState<number>(0)
 
     const incrementClick = ()=>{
-        setOffset((elem:number)=>elem + 1)
+        setOffset((elem:number)=>elem + 9)
     }
     const decrementClick = () =>{
         if(offset > 0){
-            setOffset((elem:number)=>elem - 1) 
+            setOffset((elem:number)=>elem - 9) 
         }else{
 
         }
     }
+    
+    const {search} = useOutletContext<{
+        search:string;
+    }>();
 
     useEffect(()=>{
-       dispatch(getNews(offset))
-    },[dispatch,offset])
+       dispatch(getNews({offset,search:search || ""}))
+    },[dispatch,offset,search])
 
     const blogList = useSelector(selectNewsList)
     
@@ -86,8 +90,8 @@ export const NewsPage = () => {
                 </div>
                 <div className="newsBlog-cards">
                     {blogList.map((elem)=>(
-                        <Link to={`/newsBlog/${elem.id}`}>
-                            <CardComponent key={elem.id} elem={elem}/>
+                        <Link to={`/newsBlog/${elem.id}`} key={elem.id}>
+                            <CardComponent elem={elem}/>
                         </Link> 
                     ))}
                 </div>

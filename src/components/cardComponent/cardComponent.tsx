@@ -9,7 +9,7 @@ export const CardComponent = ({elem}:any) => {
             </div>
             <h3 className='card-title'>{elem.title}</h3>
             <div className='card-wrap-text'>
-                <p>{elem.authors[0].name}</p>
+                <p>{elem.authors[0]?.name}</p>
                 <p><FormatDate isoDate={elem.published_at}/></p>
             </div>
         </div>

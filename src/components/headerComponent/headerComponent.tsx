@@ -2,10 +2,13 @@ import { NavLink, Outlet } from "react-router"
 import { Svgblog } from "../../svg/svgBlog"
 import './headerComponent.scss'
 import { SvgMagnifier } from "../../svg/svgMagnifier"
+import { useState } from "react"
 
 
 
 export const HeaderComponent = () => {
+    const [search,setSearch] = useState<string>('')
+
     return(
         <>
             <header className="header">
@@ -25,13 +28,13 @@ export const HeaderComponent = () => {
                             </NavLink>
                         </div>
                         <div className="header-search-wrap">
-                            <input className="header-search" placeholder="Search"/>
+                            <input className="header-search" placeholder="Search" value={search} onChange={(e)=>setSearch(e.target.value)}/>
                             <SvgMagnifier/>
                         </div>
                     </div>
                 </div>
             </header>
-            <Outlet/>
+            <Outlet context={{search}}/>
         </>
     )
 }

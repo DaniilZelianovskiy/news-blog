@@ -3,11 +3,7 @@ import { getNews, getNewsInfo } from "../thunks/newsThunk"
 import type { RootState } from "../store/store"
 
 type TnewsList = {
-    authors:[
-        {
-             name:string
-        }
-   ],
+    authors:{name:string}[],
    id:number,
    image_url:string,
    title:string,
