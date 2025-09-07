@@ -14,7 +14,7 @@ export const HeaderComponent = () => {
     return(
         <>
             <header className="header">
-                <div className="container">
+                <div className="header-container">
                     <div className="header-wrap">
                         <div className="header-logo">
                             <NavLink className="header-logo-link" to="">

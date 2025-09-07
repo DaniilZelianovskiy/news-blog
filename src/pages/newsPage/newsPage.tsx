@@ -9,6 +9,7 @@ import { selectNewsList, selectNext, selectPrevious } from "../../redux/slices/n
 import './newsPage.scss'
 import { ButtonComponent } from "../../components/buttonComponent/buttonComponent"
 import { useSearch } from "../../hooks/useSearch"
+import { SvgCheckMark } from "../../svg/svgCheckMark"
 
 export const NewsPage = () => {
     const dispatch = useDispatch<AppDispatch>()
@@ -58,7 +59,7 @@ export const NewsPage = () => {
 
     return(
         <section className="newsBlog">
-            <div className="container">
+            <div className="newsBlog-container">
                 <h1 className="newsBlog-title">News Blog</h1>
                 <div className="newsBlog-menu">
                     <div className="newsBlog-menu-age">
@@ -75,14 +76,18 @@ export const NewsPage = () => {
                                         setCondition({ ...condition, age: "Сначала новые" });
                                         setIsNew(false);
                                     }}
-                                    >Сначала новые</li>
+                                    >
+                                        Сначала новые   {condition.age === "Сначала новые" && <SvgCheckMark/>} 
+                                    </li>
                                     <li
                                     onClick={() => {
                                         setPublishedOrdering("published_at");
                                         setCondition({ ...condition, age: "Сначала старые" });
                                         setIsNew(false);
                                     }}
-                                    >Сначала старые</li>
+                                    >
+                                        Сначала старые  {condition.age === "Сначала старые" && <SvgCheckMark/>} 
+                                    </li>
                                 </ul>
                             </div>
                         )}
@@ -101,14 +106,18 @@ export const NewsPage = () => {
                                     setCondition({...condition,upDate: "Недавно обновлённые",});
                                     setIsOutdated(false);
                                   }}
-                                >Недавно обновлённые</li>
+                                >
+                                    Недавно обновлённые  {condition.upDate === "Недавно обновлённые" && <SvgCheckMark/>} 
+                                </li>
                                 <li
                                 onClick={() => {
                                     setUpdatedOrdering("updated_at");
                                     setCondition({...condition,upDate: "Давно обновлялись",});
                                     setIsOutdated(false);
                                 }}
-                                >Давно обновлялись</li>
+                                >
+                                    Давно обновлялись   {condition.upDate === "Давно обновлялись" && <SvgCheckMark/>} 
+                                </li>
                             </ul>
                         </div>
                         )}

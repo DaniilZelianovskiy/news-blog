@@ -1,5 +1,13 @@
 .newsBlog{
     padding: 40px 0 20px;
+    &-container {
+        max-width: 1216px;
+        margin: auto;
+        padding: 0 15px;
+        background-color: transparent;
+        position: relative;
+        z-index: 2;
+    }
     &-title{
         text-align: center;
         font-size: 30px;
@@ -10,6 +18,7 @@
         display: flex;
         margin-bottom: 46px;
         font-family: "Inter",serif;
+        cursor: pointer;
         &-age{
             margin-right: 40px;
         }
@@ -20,8 +29,6 @@
             }
         }
         &-upDate{
-            &-wrap{
-            }
             .newsBlog-menu-modal{
                 width: 228px;
             }
@@ -53,10 +60,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
-        margin:0 -10px 12px;
-        & a {
-           color: inherit;
-        }
+        margin-bottom: 32px;
     }
     &-button{
         width: 120px;

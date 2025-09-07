@@ -1,19 +1,19 @@
 .card{
-    max-width: 392px;
+    max-width: 382px;
+    padding: 16px 16px 24px;
     border: 1px solid #E8E8EA;
     border-radius: 12px;
-    padding: 16px 16px 24px;
-    flex: 1;
     & a{
-        display: block;
-        width: 360px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 350px;
         color: inherit;
     }
     &-title{
         font-size: 24px;
         font-weight: 600;
         margin-bottom: 20px;
-        width: 360px;
     }
     &-img{
         width: 100%;
@@ -22,13 +22,13 @@
             border-radius: 6px;
             overflow: hidden;
             height: 240px;
-            width: 360px;
+            width: 350px;
             margin-bottom: 16px;
         }
     }
     &-wrap-text{
         display: flex;
-        align-self: flex-end;
+        margin-top: auto;
         & p{
             color: #97989F;
             font-size:16px;
