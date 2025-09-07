@@ -37,7 +37,7 @@ export const NewsInfo = () => {
                         <p className="newsInfo-text">{newsInfo?.summary}</p>
                     </div>
                     <div>
-                        <Link className="newsInfo-link" to="/">Go to site</Link>
+                        <Link className="newsInfo-link" target="_blank"  to={newsInfo?.url ?? "/"}>Go to site</Link>
                     </div>
                 </div>
             </div>

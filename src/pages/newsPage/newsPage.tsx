@@ -5,34 +5,15 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import type { AppDispatch } from "../../redux/store/store"
 import { getNews } from "../../redux/thunks/newsThunk"
-import { selectNewsList } from "../../redux/slices/newsSlice"
+import { selectNewsList, selectNext, selectPrevious } from "../../redux/slices/newsSlice"
 import './newsPage.scss'
 import { ButtonComponent } from "../../components/buttonComponent/buttonComponent"
-import { Link, useOutletContext } from "react-router"
+import { useSearch } from "../../hooks/useSearch"
 
 export const NewsPage = () => {
     const dispatch = useDispatch<AppDispatch>()
 
-    const [offset,setOffset] = useState<number>(0)
-
-    const incrementClick = ()=>{
-        setOffset((elem:number)=>elem + 9)
-    }
-    const decrementClick = () =>{
-        if(offset > 0){
-            setOffset((elem:number)=>elem - 9) 
-        }else{
-
-        }
-    }
-    
-    const {search} = useOutletContext<{
-        search:string;
-    }>();
-
-    useEffect(()=>{
-       dispatch(getNews({offset,search:search || ""}))
-    },[dispatch,offset,search])
+    const { search } = useSearch();
 
     const blogList = useSelector(selectNewsList)
     
@@ -50,9 +31,30 @@ export const NewsPage = () => {
 
     const [condition,setCondition] = useState({
         age:"Сначала новые",
-        upDate:"Давно обновлялись"
+        upDate:"Недавно обновлённые"
     })
 
+
+    const next = useSelector(selectNext);
+    const previous = useSelector(selectPrevious);
+
+
+    const [publishedOrdering, setPublishedOrdering] = useState<string>("");
+    const [updatedOrdering, setUpdatedOrdering] = useState<string>("");
+  
+    const ordering = [publishedOrdering, updatedOrdering]
+      .filter(Boolean)
+      .join(",");
+  
+      useEffect(() => {
+        dispatch(getNews({ ordering, search: search || undefined }));
+      }, [dispatch, ordering, search]);
+
+      useEffect(() => {
+        if (blogList && blogList.length > 0) {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }
+      }, [blogList])
 
     return(
         <section className="newsBlog">
@@ -67,8 +69,20 @@ export const NewsPage = () => {
                         {isNew === true && (
                             <div className="newsBlog-menu-modal">
                                 <ul>
-                                    <li>Сначала новые</li>
-                                    <li>Сначала старые</li>
+                                    <li
+                                    onClick={() => {
+                                        setPublishedOrdering("-published_at");
+                                        setCondition({ ...condition, age: "Сначала новые" });
+                                        setIsNew(false);
+                                    }}
+                                    >Сначала новые</li>
+                                    <li
+                                    onClick={() => {
+                                        setPublishedOrdering("published_at");
+                                        setCondition({ ...condition, age: "Сначала старые" });
+                                        setIsNew(false);
+                                    }}
+                                    >Сначала старые</li>
                                 </ul>
                             </div>
                         )}
@@ -81,23 +95,43 @@ export const NewsPage = () => {
                         {isOutdated === true && (
                         <div className="newsBlog-menu-modal">
                             <ul>
-                                <li>Недавно обновлённые</li>
-                                <li>Давно обновлялись</li>
+                                <li
+                                onClick={() => {
+                                    setUpdatedOrdering("-updated_at");
+                                    setCondition({...condition,upDate: "Недавно обновлённые",});
+                                    setIsOutdated(false);
+                                  }}
+                                >Недавно обновлённые</li>
+                                <li
+                                onClick={() => {
+                                    setUpdatedOrdering("updated_at");
+                                    setCondition({...condition,upDate: "Давно обновлялись",});
+                                    setIsOutdated(false);
+                                }}
+                                >Давно обновлялись</li>
                             </ul>
                         </div>
                         )}
                     </div>
                 </div>
                 <div className="newsBlog-cards">
-                    {blogList.map((elem)=>(
-                        <Link to={`/newsBlog/${elem.id}`} key={elem.id}>
-                            <CardComponent elem={elem}/>
-                        </Link> 
+                    {blogList?.map((elem)=>(
+                        <CardComponent key={elem.id} elem={elem}/>
                     ))}
                 </div>
                 <div className="newsBlog-button-wrap">
-                    <ButtonComponent handleClick={()=>decrementClick()} className="newsBlog-button" text="Load Prev"/>
-                    <ButtonComponent handleClick={()=>incrementClick()} className="newsBlog-button" text="Load Next"/>
+                <ButtonComponent
+                    disabled={!previous}
+                    handleClick={() => previous && dispatch(getNews({ url: previous }))}
+                    className="newsBlog-button"
+                    text="Load Prev"
+                />
+                <ButtonComponent
+                    disabled={!next}
+                    handleClick={() => next && dispatch(getNews({ url: next }))}
+                    className="newsBlog-button"
+                    text="Load Next"
+                />
                 </div>
             </div>
         </section>
