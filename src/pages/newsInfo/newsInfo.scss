@@ -1,6 +1,14 @@
 .newsInfo{
-    display: flex;
     padding: 64px 0 32px;
+    display: flex;
+    &-container {
+        max-width: 1170px;
+        margin: auto;
+        padding: 0 15px;
+        background-color: transparent;
+        position: relative;
+        z-index: 2;
+    }
     &-intelligence{
         display: flex;
         margin-bottom: 32px;
@@ -15,9 +23,10 @@
         }
     }
     &-wrap{
-        width: 800px;
+        // max-width: 800px;
     }
     &-title{
+        max-width: 800px;
         font-size: 36px;
         font-weight: 600;
         color: #181A2A;
@@ -39,6 +48,7 @@
         color: #3B3C4A;
         font-family: "Source Serif 4",serif;
         &-wrap{
+            max-width: 800px;
             margin-bottom: 32px;
         }
     }

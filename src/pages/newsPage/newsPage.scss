@@ -19,6 +19,9 @@
         margin-bottom: 46px;
         font-family: "Inter",serif;
         cursor: pointer;
+        @media (max-width:1215px){
+            justify-content: center;
+        }
         &-age{
             margin-right: 40px;
         }
@@ -61,6 +64,9 @@
         flex-wrap: wrap;
         gap: 20px;
         margin-bottom: 32px;
+        @media (max-width:1215px){
+            justify-content: center;
+        }
     }
     &-button{
         width: 120px;

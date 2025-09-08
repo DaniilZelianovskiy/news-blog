@@ -23,7 +23,7 @@ export const NewsInfo = () => {
     },[id,dispatch])
     return(
         <section className="newsInfo">
-            <div className="container">
+            <div className="newsInfo-container">
                 <div className="newsInfo-wrap">
                     <h2 className="newsInfo-title">{newsInfo?.title}</h2>
                     <div className="newsInfo-intelligence">
