@@ -1,7 +1,7 @@
 .newsBlog{
     padding: 40px 0 20px;
     &-container {
-        max-width: 1216px;
+        max-width: 1246px;
         margin: auto;
         padding: 0 15px;
         background-color: transparent;
@@ -19,7 +19,7 @@
         margin-bottom: 46px;
         font-family: "Inter",serif;
         cursor: pointer;
-        @media (max-width:1215px){
+        @media (max-width:1245px){
             justify-content: center;
         }
         &-age{
@@ -64,7 +64,7 @@
         flex-wrap: wrap;
         gap: 20px;
         margin-bottom: 32px;
-        @media (max-width:1215px){
+        @media (max-width:1245px){
             justify-content: center;
         }
     }
