@@ -59,7 +59,7 @@ export const NewsPage = () => {
                     <div className="newsBlog-menu-age">
                         <div className="newsBlog-menu-age-wrap" onClick={()=>isNewChange()}>
                             <button className="newsBlog-menu-button">{condition.age}</button>
-                            <SvgArrow className={isNew ? "newsBlog-menu-rotateArrow": ""}/>
+                            <SvgArrow className={isNew ? "newsBlog-menu-rotateArrow": "newsBlog-menu-Arrow"}/>
                         </div>
                         {isNew === true && (
                             <div className="newsBlog-menu-modal">
@@ -89,7 +89,7 @@ export const NewsPage = () => {
                     <div className="newsBlog-menu-upDate">
                         <div className="newsBlog-menu-upDate-wrap" onClick={()=>isOutdatedChange()}>
                             <button className="newsBlog-menu-button">{condition.upDate}</button>
-                            <SvgArrow className={isOutdated ? "newsBlog-menu-rotateArrow":""}/>
+                            <SvgArrow className={isOutdated ? "newsBlog-menu-rotateArrow":"newsBlog-menu-Arrow"}/>
                         </div>
                         {isOutdated === true && (
                         <div className="newsBlog-menu-modal">
