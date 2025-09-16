@@ -20,7 +20,7 @@ export const CardComponent = ({elem}:CardProps) => {
         <div className='card'>
             <Link to={`/newsBlog/${elem.id}`} key={elem.id}>
                 <div className='card-img-wrap'>
-                    <img className='card-img' src={elem.image_url}/>
+                    <img className='card-img'alt='#' src={elem.image_url}/>
                 </div>
                 <h3 className='card-title'>{elem.title}</h3>
                 <div className='card-wrap-text'>

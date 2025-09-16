@@ -35,20 +35,14 @@ export const NewsPage = () => {
         upDate:"Недавно обновлённые"
     })
 
-
     const next = useSelector(selectNext);
     const previous = useSelector(selectPrevious);
 
 
-    const [publishedOrdering, setPublishedOrdering] = useState<string>("");
-    const [updatedOrdering, setUpdatedOrdering] = useState<string>("");
-  
-    const ordering = [publishedOrdering, updatedOrdering]
-      .filter(Boolean)
-      .join(",");
+    const [ordering, setOrdering] = useState<string>("-published_at");
   
       useEffect(() => {
-        dispatch(getNews({ ordering, search: search || undefined }));
+        dispatch(getNews({ ordering, search: search || "" }));
       }, [dispatch, ordering, search]);
 
       useEffect(() => {
@@ -72,21 +66,21 @@ export const NewsPage = () => {
                                 <ul>
                                     <li
                                     onClick={() => {
-                                        setPublishedOrdering("-published_at");
+                                        setOrdering("-published_at");
                                         setCondition({ ...condition, age: "Сначала новые" });
                                         setIsNew(false);
                                     }}
                                     >
-                                        Сначала новые   {condition.age === "Сначала новые" && <SvgCheckMark/>} 
+                                        Сначала новые   {ordering === "-published_at" && <SvgCheckMark/>} 
                                     </li>
                                     <li
                                     onClick={() => {
-                                        setPublishedOrdering("published_at");
+                                        setOrdering("published_at");
                                         setCondition({ ...condition, age: "Сначала старые" });
                                         setIsNew(false);
                                     }}
                                     >
-                                        Сначала старые  {condition.age === "Сначала старые" && <SvgCheckMark/>} 
+                                        Сначала старые  {ordering === "published_at" && <SvgCheckMark/>} 
                                     </li>
                                 </ul>
                             </div>
@@ -102,21 +96,21 @@ export const NewsPage = () => {
                             <ul>
                                 <li
                                 onClick={() => {
-                                    setUpdatedOrdering("-updated_at");
+                                    setOrdering("-updated_at");
                                     setCondition({...condition,upDate: "Недавно обновлённые",});
                                     setIsOutdated(false);
                                   }}
                                 >
-                                    Недавно обновлённые  {condition.upDate === "Недавно обновлённые" && <SvgCheckMark/>} 
+                                    Недавно обновлённые  {ordering === "-updated_at" && <SvgCheckMark/>} 
                                 </li>
                                 <li
                                 onClick={() => {
-                                    setUpdatedOrdering("updated_at");
+                                    setOrdering("updated_at");
                                     setCondition({...condition,upDate: "Давно обновлялись",});
                                     setIsOutdated(false);
                                 }}
                                 >
-                                    Давно обновлялись   {condition.upDate === "Давно обновлялись" && <SvgCheckMark/>} 
+                                    Давно обновлялись   {ordering === "updated_at" && <SvgCheckMark/>} 
                                 </li>
                             </ul>
                         </div>

@@ -10,13 +10,13 @@ function App() {
     <SearchProvider>
       <Routes>
         <Route element={<HeaderComponent/>}>
-          <Route path="*" element={<Navigate to="/newsBlog" replace />} />
           <Route path='/newsBlog'>
             <Route index element={<NewsPage/>}/>
             <Route path=":id" element={<NewsInfo/>}/>
           </Route>
+          <Route path="*" element={<Navigate to="/newsBlog" replace />} />
         </Route>
-      </Routes>
+      </Routes> 
     </SearchProvider>
   )
 } 
